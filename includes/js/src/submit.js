@@ -122,7 +122,7 @@ export default function submit( form, options = {} ) {
 		).insertAdjacentText( 'beforeend', response.message );
 
 		form.querySelectorAll( '.wpcf7-response-output' ).forEach( div => {
-			div.innerText = response.message;
+			div.innerHTML = response.message;
 		} );
 
 	} ).catch( error => console.error( error ) );
@@ -143,11 +143,11 @@ apiFetch.use( ( options, next ) => {
 export const clearResponse = form => {
 	form.wpcf7.parent.querySelector(
 		'.screen-reader-response [role="status"]'
-	).innerText = '';
+	).innerHTML = '';
 
 	form.wpcf7.parent.querySelector(
 		'.screen-reader-response ul'
-	).innerText = '';
+	).innerHTML = '';
 
 	form.querySelectorAll( '.wpcf7-not-valid-tip' ).forEach( span => {
 		span.remove();
@@ -160,6 +160,6 @@ export const clearResponse = form => {
 	} );
 
 	form.querySelectorAll( '.wpcf7-response-output' ).forEach( div => {
-		div.innerText = '';
+		div.innerHTML = '';
 	} );
 };
